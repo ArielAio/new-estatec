@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { db } from "../../../lib/firebase";
 import { doc, getDoc, updateDoc } from "firebase/firestore";
-import AuthRoute from "../../lib/AuthRoute";
+import AuthRoute from "../../../lib/AuthRoute";
 
 
 export default function EditWork() {
