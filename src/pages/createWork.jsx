@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { db } from "../../lib/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import AuthRoute from "../../lib/AuthRoute";
+
 
 export default function CreateWork() {
     const [type, setType] = useState("internship");
@@ -31,13 +33,15 @@ export default function CreateWork() {
     };
 
     return (
-        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6 animate-fadeIn">
-            <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full ">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center animate-fadeIn">
+    <AuthRoute>
+
+        <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6">
+            <div className="bg-white shadow-lg rounded-lg p-6 md:p-8 w-full max-w-md">
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4 text-center">
                     Cadastrar Estágio/Trabalho
                 </h1>
                 <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-                    <div className="animate-fadeIn">
+                    <div>
                         <label className="block text-gray-700 mb-2">Tipo:</label>
                         <select
                             value={type}
@@ -71,8 +75,8 @@ export default function CreateWork() {
                         className="p-3 border border-gray-300 rounded-lg transition-transform duration-300 hover:scale-105"
                         required
                     />
-                    {error && <p className="text-red-500 text-sm text-center animate-fadeIn">{error}</p>}
-                    {success && <p className="text-green-500 text-sm text-center animate-fadeIn">{success}</p>}
+                    {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+                    {success && <p className="text-green-500 text-sm text-center">{success}</p>}
                     <button
                         type="submit"
                         className="w-full py-3 bg-blue-500 text-white rounded-lg text-lg font-semibold hover:bg-blue-600 transition-transform duration-300 transform hover:scale-105"
@@ -82,5 +86,7 @@ export default function CreateWork() {
                 </form>
             </div>
         </main>
+    </AuthRoute>
+
     );
 }

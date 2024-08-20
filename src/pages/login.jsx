@@ -7,13 +7,13 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const router = useRouter(); 
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/"); 
+      router.push("/");
     } catch (err) {
       setError(err.message);
     }
@@ -21,8 +21,8 @@ export default function Login() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6">
-      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
-        <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+      <div className="bg-white shadow-lg rounded-lg p-6 md:p-8 w-full max-w-md">
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">
           Login
         </h1>
         <form onSubmit={handleLogin} className="flex flex-col space-y-4">

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { db } from "../../lib/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import AuthRoute from "../../lib/AuthRoute";
+
 
 export default function Listar() {
     const [jobPosts, setJobPosts] = useState([]);
@@ -45,9 +47,11 @@ export default function Listar() {
     if (error) return <p className="text-center text-red-500">{error}</p>;
 
     return (
+    <AuthRoute>
+
         <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6">
-            <div className="bg-white shadow-lg rounded-lg p-8 max-w-4xl w-full">
-                <h1 className="text-3xl font-bold text-gray-800 mb-6 text-center animate-fadeIn">
+            <div className="bg-white shadow-lg rounded-lg p-6 md:p-8 w-full max-w-4xl"> {/* Ajuste de padding e largura */}
+                <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center animate-fadeIn">
                     Listagem de Estágios/Trabalhos
                 </h1>
                 {jobPosts.length === 0 ? (
@@ -59,11 +63,11 @@ export default function Listar() {
                                 key={post.id}
                                 className="border border-gray-300 rounded-lg p-4 shadow-sm transform transition-transform duration-500 hover:scale-105 hover:shadow-xl animate-fadeIn"
                             >
-                                <h2 className="text-xl font-semibold text-gray-800">{post.company_name}</h2>
+                                <h2 className="text-lg md:text-xl font-semibold text-gray-800">{post.company_name}</h2>
                                 <p className="text-gray-600">Tipo: {post.type === "internship" ? "Estágio" : "Trabalho"}</p>
                                 <p className="text-gray-600">Requisitos: {post.requirements}</p>
                                 <p className="text-gray-600">Salário/Bolsa: {post.salary_or_stipend}</p>
-                                <div className="mt-4 flex space-x-4">
+                                <div className="mt-4 flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0"> {/* Flex column for small screens */}
                                     <button
                                         onClick={() => handleEdit(post.id)}
                                         className="py-2 px-4 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-transform duration-300 transform hover:scale-105"
@@ -83,5 +87,7 @@ export default function Listar() {
                 )}
             </div>
         </main>
+    </AuthRoute>
+
     );
 }
