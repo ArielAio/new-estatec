@@ -11,23 +11,48 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-start-rgb: 18, 18, 18;
+    --background-end-rgb: 24, 24, 27;
   }
 }
 
 body {
-  color: black;
+  color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
-    )
+    ),
     rgb(var(--background-start-rgb));
+}
+
+input, textarea, select {
+  color: black; /* Texto preto */
+  background-color: white; /* Fundo branco */
+  border: 1px solid #ccc; /* Borda cinza clara para visibilidade */
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gradient-to-b from-transparent to-gray-900;
+  }
+
+  input, textarea, select {
+    color: black; /* Manter o texto preto no modo escuro */
+    background-color: white; /* Manter o fundo branco no modo escuro */
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .transition-colors {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
