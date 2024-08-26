@@ -1,15 +1,11 @@
 import '../styles/globals.css';
 import Layout from '../../components/Layout';
-import Head from 'next/head';
 import Script from 'next/script'; // Importa o componente Script do Next.js
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Head>
-        <title>My App</title> {/* Exemplo de como adicionar um título no Head */}
-      </Head>
-      
+     
       <Script id="botsonic-script" strategy="afterInteractive">
         {`
           (function (w, d, s, o, f, js, fjs) {
