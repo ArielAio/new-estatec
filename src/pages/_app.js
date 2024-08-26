@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
 
           Botsonic("init", {
             serviceBaseUrl: "https://api-azure.botsonic.ai",
-            token: "8396e932-6981-4c8e-83ce-7f578dcdcd9c",
+            token: "c4c38a33-213e-44f6-9d2e-973b6ef75809",
           });
         `}
       </Script>
